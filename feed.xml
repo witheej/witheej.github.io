@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-17T03:34:55+00:00</updated><id>/</id><title type="html">Belkirk College of Engineering</title><subtitle>Belkirk Demo Site for Forestry.io</subtitle><entry><title type="html">Create a Windows user for a service to run as</title><link href="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/" rel="alternate" type="text/html" title="Create a Windows user for a service to run as" /><published>2019-03-16T04:00:00+00:00</published><updated>2019-03-16T04:00:00+00:00</updated><id>/create-a-windows-user-for-a-service-to-run-as</id><content type="html" xml:base="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/">&lt;p&gt;Create a user in cmd&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-17T03:46:47+00:00</updated><id>/</id><title type="html">Belkirk College of Engineering</title><subtitle>Belkirk Demo Site for Forestry.io</subtitle><entry><title type="html">Create a Windows user for a service to run as</title><link href="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/" rel="alternate" type="text/html" title="Create a Windows user for a service to run as" /><published>2019-03-16T04:00:00+00:00</published><updated>2019-03-16T04:00:00+00:00</updated><id>/create-a-windows-user-for-a-service-to-run-as</id><content type="html" xml:base="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/">&lt;p&gt;Create a user in cmd&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user &amp;lt;user_account&amp;gt; &amp;lt;password&amp;gt; /add
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -13,25 +13,17 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;icacls &quot;&amp;lt;appdirectory&amp;gt;&quot; /grant &amp;lt;user_account&amp;gt;:&amp;lt;permission_flags&amp;gt; /t
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;user_account&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_account&amp;gt;&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:32px&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_account&amp;gt;&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;The user account (SID).&lt;/p&gt;
 
-&lt;p&gt;&lt;span style=&quot;font-size:32px&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;This is some code that I want to display large&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style=&quot;font-size:32px; font-weight:bold&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;This is some code that I want to display large&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style=&quot;font-size:32px&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;This is &lt;/code&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;**some code**&lt;/code&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; that I want to display large&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span style=&quot;font-size:32px&quot;&gt;This is some &lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt; that I want to display large&lt;/span&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;app_directory&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;app_directory&amp;gt;&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:32px&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;app_directory&amp;gt;&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;The path of the folder containing the app.&lt;/p&gt;
 
-&lt;h4 id=&quot;permission_flags&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;permission_flags&amp;gt;&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:32px&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;permission_flags&amp;gt;&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;sets-the-access-permissions&quot;&gt;Sets th&lt;code class=&quot;highlighter-rouge&quot;&gt;e acc&lt;/code&gt;ess permissions.&lt;/h1&gt;
+&lt;p&gt;Sets the access permissions.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;(OI): The Object Inherit flag propagates permissions to subordinate files&lt;/li&gt;
@@ -75,7 +67,7 @@
 
 &lt;p&gt;The domain of a domain-joined machine. If the machine isn’t domain-joined, the local machine name.&lt;/p&gt;
 
-&lt;h4 id=&quot;user_account-1&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_account&amp;gt;&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;user_account&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_account&amp;gt;&lt;/code&gt;&lt;/h4&gt;
 
 &lt;p&gt;The user account under which the service runs.&lt;/p&gt;
 
