@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-21T14:38:08+00:00</updated><id>/</id><title type="html">Belkirk College of Engineering</title><subtitle>Belkirk Demo Site for Forestry.io</subtitle><entry><title type="html">Create a Windows user for a service to run as</title><link href="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/" rel="alternate" type="text/html" title="Create a Windows user for a service to run as" /><published>2019-03-16T04:00:00+00:00</published><updated>2019-03-16T04:00:00+00:00</updated><id>/create-a-windows-user-for-a-service-to-run-as</id><content type="html" xml:base="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/">&lt;p&gt;Create a user in cmd&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-21T19:52:44+00:00</updated><id>/</id><title type="html">Belkirk College of Engineering</title><subtitle>Belkirk Demo Site for Forestry.io</subtitle><entry><title type="html">ASP.NET Core 2.x - Add a DbContext</title><link href="/2019-03-21-asp-net-core-2-2-add-a-dbcontext/" rel="alternate" type="text/html" title="ASP.NET Core 2.x - Add a DbContext" /><published>2019-03-21T04:00:00+00:00</published><updated>2019-03-21T04:00:00+00:00</updated><id>/asp-net-core-2-2-add-a-dbcontext</id><content type="html" xml:base="/2019-03-21-asp-net-core-2-2-add-a-dbcontext/">&lt;p&gt;Index:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Example entity model&lt;/li&gt;
+  &lt;li&gt;Install NuGet packages&lt;/li&gt;
+  &lt;li&gt;Create context class&lt;/li&gt;
+  &lt;li&gt;Update Startup.cs&lt;/li&gt;
+  &lt;li&gt;Example connection string&lt;/li&gt;
+  &lt;li&gt;Add-Migration&lt;/li&gt;
+  &lt;li&gt;Update-Database&lt;/li&gt;
+  &lt;li&gt;Seed data&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Example entity model&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;using System.ComponentModel.DataAnnotations;
+
+namespace MyProject.Models
+{
+    public class Customer
+    {
+        [Key]
+        public long CustomerId { get; set; }
+        public string Name { get; set; }
+        public DateTime? FirstPurchaseDate { get; set; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Read about the &lt;code class=&quot;highlighter-rouge&quot;&gt;[Key]&lt;/code&gt; annotation and others &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.2&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Install NuGet packages (the Identity packages are only necessary if your app is managing identities, I think)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;PackageReference Include=&quot;Microsoft.AspNetCore.App&quot; /&amp;gt;
+&amp;lt;PackageReference Include=&quot;Microsoft.AspNetCore.Identity&quot; Version=&quot;2.2.0&quot; /&amp;gt;
+&amp;lt;PackageReference Include=&quot;Microsoft.AspNetCore.Identity.EntityFrameworkCore&quot; Version=&quot;2.2.0&quot; /&amp;gt;
+&amp;lt;PackageReference Include=&quot;Microsoft.EntityFrameworkCore&quot; Version=&quot;2.2.0&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create your context class that inherits from &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-2.1&quot;&gt;DbContext&lt;/a&gt;.  I like to put my context class in a folder named “Data” at the root of my project.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;using Microsoft.EntityFrameworkCore;
+using MyProject.Models;
+
+namespace MyProject.Data
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public MyProjectDbContext(DbContextOptions&amp;lt;MyProjectDbContext&amp;gt; options) : base(options)
+        {
+
+        }
+
+        // Add DbSet for each entity class
+        public DbSet&amp;lt;Customer&amp;gt; Customer { get; set; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Call &lt;code class=&quot;highlighter-rouge&quot;&gt;services.AddDbContext&amp;lt;&amp;gt;(...);&lt;/code&gt; in Startup.cs&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using MyProject.Data;
+
+namespace MyProject
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // ...
+
+            services.AddDbContext&amp;lt;MyProjectDbContext&amp;gt;(options =&amp;gt; options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+
+            // ...
+        }
+        
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ...)
+        {
+            // ...
+        }
+    
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Example appsettings.json connection string (the database it points to doesn’t need to exist, but the connection string needs to exist for &lt;code class=&quot;highlighter-rouge&quot;&gt;Add-Migration&lt;/code&gt; to work )&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;Server=(localdb)\\MSSQLLocalDB;Database=_CHANGE_ME;Trusted_Connection=True;MultipleActiveResultSets=true&quot;
+ }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;TODO: Add-Migration&lt;/p&gt;
+
+&lt;p&gt;TODO: Update-Database&lt;/p&gt;
+
+&lt;p&gt;TODO: Initialization code, like seed data&lt;/p&gt;</content><author><name></name></author><category term="Entity Framework Core" /><category term="ASP.NET Core 2.2" /><category term="DbContext" /><summary type="html">Index:</summary></entry><entry><title type="html">Create a Windows user for a service to run as</title><link href="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/" rel="alternate" type="text/html" title="Create a Windows user for a service to run as" /><published>2019-03-16T04:00:00+00:00</published><updated>2019-03-16T04:00:00+00:00</updated><id>/create-a-windows-user-for-a-service-to-run-as</id><content type="html" xml:base="/2019-03-17-create-a-windows-user-for-a-service-to-run-as/">&lt;p&gt;Create a user in cmd&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net user &amp;lt;user_account&amp;gt; &amp;lt;password&amp;gt; /add
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
